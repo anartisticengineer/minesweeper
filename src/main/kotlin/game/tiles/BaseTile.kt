@@ -7,14 +7,13 @@ import org.openrndr.shape.Rectangle
 
 abstract class BaseTile(private val pos: IntVector2) {
     protected var isFlagged = false
-    protected var isOpen = false
+    var isOpen = false
     private val tileSize = 30.0
     abstract val hasMine: Boolean
     abstract val mineColor: ColorRGBa
     abstract fun onHit()
 
     fun toggleFlag() {
-        println("flagged")
         isFlagged = !isFlagged
     }
 
@@ -28,7 +27,4 @@ abstract class BaseTile(private val pos: IntVector2) {
 
     val position: IntVector2
         get() = pos
-
-    val open: Boolean
-        get() = isOpen
 }

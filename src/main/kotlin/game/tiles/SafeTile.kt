@@ -8,14 +8,20 @@ class SafeTile(pos: IntVector2) : BaseTile(pos) {
     override val hasMine: Boolean = false
 
     override val mineColor: ColorRGBa
-        get() = if (isOpen) ColorRGBa.WHITE else ColorRGBa.GRAY
+        get() {
+            if (isOpen) {
+                return ColorRGBa.WHITE
+            } else if (isFlagged) {
+                return ColorRGBa.ORANGE
+            }
+            return ColorRGBa.GRAY
+        }
 
     override fun onHit() {
         if (isFlagged) {
             println("Flagged Safe Tile")
         } else {
             isOpen = true
-            println("Safe Tile")
         }
     }
 
